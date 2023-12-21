@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Hello Thymeleaf</title>
+</head>
+<style>
+	table {
+		border-collapse: collapse;
+	}
+	table th, table td {
+		border: 1px solid;
+	}
+	table tbody {
+		text-align: center;
+	}
+</style>
+<body>
+<table style="border: 1px solid">
+	<thead>
+	<tr>
+		<th>일련번호</th>
+		<th>등록자 ID</th>
+		<th>등록일</th>
+		<th>제목</th>
+		<th>내용</th>
+		<th>파일 ID</th>
+		<th>조회수</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr th:each="result, index : ${boardList}">
+		<td th:text="|${index.count}|"></td>
+		<td th:text="${result.rgstId}"></td>
+		<td th:text="${result.rgstDt}"></td>
+		<td th:text="${result.title}"></td>
+		<td th:text="${result.cont}"></td>
+		<td th:text="${result.fileId}"></td>
+		<td th:text="${result.hts}"></td>
+	</tr>
+	</tbody>
+</table>
+</body>
+</html>
