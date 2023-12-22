@@ -32,6 +32,6 @@ public class MainController {
         List<BoardDTO> boardList = boardService.selectList();
         model.addAttribute("boardList", boardList);
 
-        return "list";
+        return "board/list";
     }
 }
