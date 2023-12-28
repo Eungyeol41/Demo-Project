@@ -1,28 +1,35 @@
 package com.example.demo.board;
 
+import com.example.demo.cmmn.CmmnDTO;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import org.apache.ibatis.type.Alias;
 
 @Alias("BoardDTO")
-public class BoardDTO {
+public class BoardDTO extends CmmnDTO {
 
-    private String serno; // 일련번호
+    private String seqNo; // 일련번호
     private String useYn; // 사용 여부
+    @NotEmpty
+    @Pattern(regexp = "^[a-zA-Z0-9]{6,15}$")
     private String rgstId; // 등록자 ID
     private String rgstDt; // 등록일
     private String rvseId; // 수정자 ID
     private String rvseDt; // 수정일
+    @NotEmpty
     private String title; // 제목
+    @NotEmpty
     private String cont; // 내용
     private String fileId; // 파일 ID
     private String hts; // 조회수
 
 
-    public String getSerno() {
-        return serno;
+    public String getSeqNo() {
+        return seqNo;
     }
 
-    public void setSerno(String serno) {
-        this.serno = serno;
+    public void setSeqNo(String seqNo) {
+        this.seqNo = seqNo;
     }
 
     public String getUseYn() {

@@ -3,7 +3,7 @@
 <mapper namespace="com.example.demo.board.dao.BoardDao">
 
 	<select id="selectList" resultType="BoardDTO" parameterType="BoardDTO">
-		SELECT SERNO 	serno
+		SELECT SEQ_NO 	seqNo
 			 , RGST_ID 	rgstId
 			 , TO_CHAR(RGST_DT, 'YYYY.MM.DD') 	rgstDt
 			 , TITLE 	title
@@ -13,5 +13,46 @@
 		FROM T_BOARD
 		WHERE USE_YN = 'Y'
 	</select>
+
+	<select id="selectContent" resultType="BoardDTO" parameterType="BoardDTO">
+		SELECT SEQ_NO 	seqNo
+			 , RGST_ID 	rgstId
+			 , TO_CHAR(RGST_DT, 'YYYY.MM.DD') 	rgstDt
+			 , TITLE 	title
+			 , CONT 	cont
+			 , FILE_ID 	fileId
+			 , HTS 		hts
+		FROM T_BOARD
+		WHERE USE_YN = 'Y'
+		  AND SEQ_NO = #{seqNo}
+	</select>
+
+	<insert id="insertContents" parameterType="BoardDTO">
+		INSERT INTO T_BOARD (
+			  SEQ_NO
+			, RGST_ID
+			, RVSE_ID
+			, TITLE
+			, CONT
+			, FILE_ID
+		) VALUES (
+			  T_BOARD_SEQ.nextval
+			, #{rgstId}
+			, #{rgstId}
+			, #{title}
+			, #{cont}
+			, #{fileId}
+		)
+	</insert>
+
+	<update id="updateContents" parameterType="BoardDTO">
+		UPDATE T_BOARD SET
+			  RGST_ID = #{rgstId}
+			, RVSE_ID = #{rgstId}
+			, TITLE = #{title}
+			, CONT = #{cont}
+			, FILE_ID = #{fileId}
+		WHERE SEQ_NO = #{seqNo}
+	</update>
 
 </mapper>

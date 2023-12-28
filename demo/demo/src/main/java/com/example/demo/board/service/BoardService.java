@@ -6,16 +6,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class BoardService {
+public interface BoardService {
 
-    private final BoardDao boardDao;
-    public BoardService(BoardDao boardDao) {
-        this.boardDao = boardDao;
-    }
-
-    public List<BoardDTO> selectList() {
-
-        return boardDao.selectList();
-    }
+    public List<BoardDTO> selectList();
+    public BoardDTO selectContent();
+    public void insertContents();
+    public void updateContents();
 }
