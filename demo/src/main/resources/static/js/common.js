@@ -1,17 +1,23 @@
 function marginStyle(div, num) {
     let marginDiv;
 
-    if (div === 't') {
-        marginDiv = 'top';
-    } else if (div === 'r') {
-        marginDiv = 'right';
-    } else if (div === 'b') {
-        marginDiv = 'bottom';
-    } else if (div === 'l') {
-        marginDiv = 'left';
-    } else {
-        marginDiv = '';
+    switch (div) {
+        case 't' :
+            marginDiv = '-top';
+            break
+        case 'r' :
+            marginDiv = '-right';
+            break
+        case 'b' :
+            marginDiv = '-bottom';
+            break
+        case 'l' :
+            marginDiv = '-left';
+            break
+        default :
+            marginDiv = '';
+            break
     }
 
-    $(this).css('margin-' + marginDiv, num);
+    $(this).css('margin' + marginDiv, num);
 }
