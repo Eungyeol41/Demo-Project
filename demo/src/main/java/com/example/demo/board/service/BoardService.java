@@ -9,7 +9,7 @@ import java.util.List;
 public interface BoardService {
 
     public List<BoardDTO> selectList();
-    public BoardDTO selectContent();
+    public BoardDTO selectContent(BoardDTO boardDTO);
     public void insertContents();
-    public void updateContents();
+    public void updateContents(BoardDTO boardDTO);
 }

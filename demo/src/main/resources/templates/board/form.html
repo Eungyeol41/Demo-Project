@@ -5,41 +5,43 @@
 	<title>Insert/Update Form</title>
 </head>
 <style>
-    button {
-        text-align: center;
-        cursor: pointer;
-        border: 1px solid #0669cb;
-        background-color: #0669cb;
-        color: white;
-    }
+	table {
+		margin: 0 auto;
+	}
 
-    .mar_t10 {
-        margin-top: 10px;
+    input {
+        border: none;
+        background-color: #e3e3e3;
+        padding: 0.6rem;
     }
 </style>
 <body>
 <form th:action="${procType eq 'insert' ? 'insertProc.do' : 'updateProc.do'}" th:object="${boardDTO}" method="post">
-	<div>
-		<label th:for="rgstId">
-			ID : <input type="text" th:field="*{rgstId}" placeholder="ID를 입력하세요."/>
-		</label>
-	</div>
-	<div>
-		<label th:for="title">
-			제목 : <input type="text" th:field="*{title}" placeholder="제목을 입력하세요."/>
-		</label>
-	</div>
-	<div>
-		<label th:for="cont">
-			내용 : <input type="text" th:field="*{cont}" placeholder="내용을 입력하세요."/>
-		</label>
-	</div>
-	<div>
-		<label th:for="fileId">
-			파일 : <input type="text" th:field="*{fileId}" placeholder="파일을 추가해주세요."/>
-		</label>
-	</div>
-	<div class="mar_t10">
+	<table>
+		<colgroup>
+			<col style="width: 30%;"/>
+			<col />
+		</colgroup>
+		<tbody>
+		<tr>
+			<th scope="col">ID</th>
+			<td><label><input type="text" th:field="*{rgstId}" placeholder="ID를 입력하세요."/></label></td>
+		</tr>
+		<tr>
+			<th scope="col">제목</th>
+			<td><label><input type="text" th:field="*{title}" placeholder="제목을 입력하세요."/></label></td>
+		</tr>
+		<tr>
+			<th scope="col">내용</th>
+			<td><label><input type="text" th:field="*{cont}" placeholder="내용을 입력하세요."/></label></td>
+		</tr>
+		<tr>
+			<th scope="col">파일</th>
+			<td><label><input type="text" th:field="*{fileId}" placeholder="파일을 추가해주세요."/></label></td>
+		</tr>
+		</tbody>
+	</table>
+	<div class="mar_t10 center">
 		<button type="button" th:onclick="|location.href='@{list.do}'|">취소</button>
 		<button th:onclick="${procType eq 'insert'} ? |location.href='@{insertProc.do}'| : |location.href='@{updateProc.do}'|">등록</button>
 	</div>

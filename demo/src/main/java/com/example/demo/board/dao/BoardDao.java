@@ -9,7 +9,7 @@ import java.util.List;
 public interface BoardDao {
 
     List<BoardDTO> selectList(); // 전체 List
-    BoardDTO selectContent(); // 1건에 대한 데이터 조회
+    BoardDTO selectContent(BoardDTO boardDTO); // 1건에 대한 데이터 조회
     void insertContents(); // 데이터 등록
-    void updateContents(); // 데이터 수정
+    void updateContents(BoardDTO boardDTO); // 데이터 수정
 }

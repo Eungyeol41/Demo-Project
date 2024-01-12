@@ -20,9 +20,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.selectList();
 	}
 
-	public BoardDTO selectContent() {
+	public BoardDTO selectContent(BoardDTO boardDTO) {
 
-		return boardDao.selectContent();
+		return boardDao.selectContent(boardDTO);
 	}
 
 	@Override
@@ -32,8 +32,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void updateContents() {
+	public void updateContents(BoardDTO boardDTO) {
 
-		boardDao.updateContents();
+		boardDao.updateContents(boardDTO);
 	}
 }
