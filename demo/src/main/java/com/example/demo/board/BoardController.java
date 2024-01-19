@@ -67,11 +67,14 @@ public class BoardController {
 	}
 
 	@PostMapping(folderPath + "{procType}Proc.do")
-	public String boardProc(@PathVariable String procType, Model model) {
-
+	public String boardProc(@ModelAttribute("boardDTO") BoardDTO boardDTO, @PathVariable String procType, Model model) {
+		LOGGER.debug("");
+		LOGGER.debug(procType + "Proc.do!");
+		LOGGER.debug("");
 		if("insert".equals(procType)) {
-			boardService.insertContents();
+			boardService.insertContents(boardDTO);
 			LOGGER.info("INSERT");
+			return "redirect:list.do";
 		} else if("update".equals(procType)) {
 			LOGGER.info("UPDATE");
 		}

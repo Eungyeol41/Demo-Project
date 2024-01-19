@@ -1,50 +1,43 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{fragment/layout}"
+	  layout:fragment="Content">
 <head>
 	<meta charset="UTF-8"/>
 	<title>Insert/Update Form</title>
 </head>
-<style>
-	table {
-		margin: 0 auto;
-	}
-
-    input {
-        border: none;
-        background-color: #e3e3e3;
-        padding: 0.6rem;
-    }
-</style>
 <body>
-<form th:action="${procType eq 'insert' ? 'insertProc.do' : 'updateProc.do'}" th:object="${boardDTO}" method="post">
-	<table>
-		<colgroup>
-			<col style="width: 30%;"/>
-			<col />
-		</colgroup>
-		<tbody>
-		<tr>
-			<th scope="col">ID</th>
-			<td><label><input type="text" th:field="*{rgstId}" placeholder="ID를 입력하세요."/></label></td>
-		</tr>
-		<tr>
-			<th scope="col">제목</th>
-			<td><label><input type="text" th:field="*{title}" placeholder="제목을 입력하세요."/></label></td>
-		</tr>
-		<tr>
-			<th scope="col">내용</th>
-			<td><label><input type="text" th:field="*{cont}" placeholder="내용을 입력하세요."/></label></td>
-		</tr>
-		<tr>
-			<th scope="col">파일</th>
-			<td><label><input type="text" th:field="*{fileId}" placeholder="파일을 추가해주세요."/></label></td>
-		</tr>
-		</tbody>
-	</table>
-	<div class="mar_t10 center">
-		<button type="button" th:onclick="|location.href='@{list.do}'|">취소</button>
-		<button th:onclick="${procType eq 'insert'} ? |location.href='@{insertProc.do}'| : |location.href='@{updateProc.do}'|">등록</button>
-	</div>
-</form>
+	<form th:action="${procType eq 'insert' ? 'insertProc.do' : 'updateProc.do'}" th:object="${boardDTO}" method="post">
+		<table>
+			<colgroup>
+				<col style="width: 30%;"/>
+				<col />
+			</colgroup>
+			<tbody>
+			<tr>
+				<th scope="col">ID</th>
+				<td><label><input type="text" th:field="*{rgstId}" placeholder="ID를 입력하세요."/></label></td>
+			</tr>
+			<tr>
+				<th scope="col">제목</th>
+				<td><label><input type="text" th:field="*{title}" placeholder="제목을 입력하세요."/></label></td>
+			</tr>
+			<tr>
+				<th scope="col">내용</th>
+				<td><label><input type="text" th:field="*{cont}" placeholder="내용을 입력하세요."/></label></td>
+			</tr>
+			<tr>
+				<th scope="col">파일</th>
+				<td><label><input type="text" th:field="*{fileId}" placeholder="파일을 추가해주세요."/></label></td>
+			</tr>
+			</tbody>
+		</table>
+		<div class="mar_t10 center">
+			<button type="button" th:onclick="|location.href='@{list.do}'|">취소</button>
+			<button th:onclick="${procType eq 'insert'} ? |location.href='@{insertProc.do}'| : |location.href='@{updateProc.do}'|" th:text="${procType eq 'insert' ? '등록' : '수정'}"></button>
+		</div>
+	</form>
 </body>
 </html>

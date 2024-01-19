@@ -1,3 +1,4 @@
+/* tag 별 CSS */
 button {
     text-align: center;
     cursor: pointer;
@@ -6,10 +7,33 @@ button {
     color: white;
 }
 
+table {
+    margin: 0 auto;
+}
+
+input {
+    border: none;
+    background-color: #e3e3e3;
+    padding: 0.6rem;
+}
+
+/* Class 별 CSS */
 .center {
     text-align: center;
 }
 
 .mar_t10 {
     margin-top: 10px;
+}
+
+/* ID 별 CSS */
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background: #363638;
+    color: #e3e3e3;
+    text-align: center;
 }

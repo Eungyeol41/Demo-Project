@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{fragment/layout}"
+	  layout:fragment="Content">
 <head>
 	<meta charset="UTF-8"/>
 	<title>Hello Thymeleaf</title>
@@ -28,37 +32,37 @@
 	}
 </style>
 <body>
-<table>
-	<thead>
-	<tr>
-		<th>일련번호</th>
-		<th>등록자 ID</th>
-		<th>등록일</th>
-		<th>제목</th>
-		<th>내용</th>
-		<th>파일 ID</th>
-		<th>조회수</th>
-	</tr>
-	</thead>
-	<tbody>
-	<th:block th:if="${not #lists.isEmpty(boardList)}">
-		<tr th:each="result, index : ${boardList}">
-			<td th:text="|${index.count}|"></td>
-			<td th:text="${result.rgstId}"></td>
-			<td th:text="${result.rgstDt}"></td>
-			<td th:text="${result.title}"></td>
-			<td th:text="${result.cont}"></td>
-			<td th:text="${result.fileId}"></td>
-			<td th:text="${result.hts}"></td>
+	<table>
+		<thead>
+		<tr>
+			<th>일련번호</th>
+			<th>등록자 ID</th>
+			<th>등록일</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>파일 ID</th>
+			<th>조회수</th>
 		</tr>
-	</th:block>
-	<th:block th:if="${#lists.isEmpty(boardList)}">
-		<tr><td colspan="7">데이터가 없습니다.</td></tr>
-	</th:block>
-	</tbody>
-</table>
-<div class="mar_t10">
-	<button type="button" th:onclick="|location.href='@{insertForm.do}'|">등록</button>
-</div>
+		</thead>
+		<tbody>
+		<th:block th:if="${not #lists.isEmpty(boardList)}">
+			<tr th:each="result, index : ${boardList}">
+				<td th:text="|${index.count}|"></td>
+				<td th:text="${result.rgstId}"></td>
+				<td th:text="${result.rgstDt}"></td>
+				<td th:text="${result.title}"></td>
+				<td th:text="${result.cont}"></td>
+				<td th:text="${result.fileId}"></td>
+				<td th:text="${result.hts}"></td>
+			</tr>
+		</th:block>
+		<th:block th:if="${#lists.isEmpty(boardList)}">
+			<tr><td colspan="7">데이터가 없습니다.</td></tr>
+		</th:block>
+		</tbody>
+	</table>
+	<div id="btn_div">
+		<button type="button" th:onclick="|location.href='@{insertForm.do}'|">등록</button>
+	</div>
 </body>
 </html>

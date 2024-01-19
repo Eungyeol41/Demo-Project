@@ -26,9 +26,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void insertContents() {
+	public void insertContents(BoardDTO boardDTO) {
 
-		boardDao.insertContents();
+		boardDao.insertContents(boardDTO);
 	}
 
 	@Override

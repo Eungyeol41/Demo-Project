@@ -10,6 +10,6 @@ public interface BoardService {
 
     public List<BoardDTO> selectList();
     public BoardDTO selectContent(BoardDTO boardDTO);
-    public void insertContents();
+    public void insertContents(BoardDTO boardDTO);
     public void updateContents(BoardDTO boardDTO);
 }

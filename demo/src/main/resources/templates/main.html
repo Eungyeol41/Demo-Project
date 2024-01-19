@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{fragment/layout}"
+	  layout:fragment="Content">
 <head>
 	<meta charset="UTF-8" />
-	<title>Hello Thymeleaf</title>
+	<title></title>
 </head>
 <body>
-<h2>Hello, <span th:text="${name}"></span>!</h2>
-<a th:href="@{/board/list.do}">리스트로 이동</a>
+	<h2>Hello, <span th:text="${name}"></span>!</h2>
+	<a th:href="@{/board/list.do}">리스트로 이동</a>
 </body>
 </html>
