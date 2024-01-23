@@ -20,9 +20,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.selectList();
 	}
 
-	public BoardDTO selectContent(BoardDTO boardDTO) {
+	public BoardDTO selectContent(String seqNo) {
 
-		return boardDao.selectContent(boardDTO);
+		return boardDao.selectContent(seqNo);
 	}
 
 	@Override

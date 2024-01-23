@@ -14,7 +14,7 @@
 		WHERE USE_YN = 'Y'
 	</select>
 
-	<select id="selectContent" resultType="BoardDTO" parameterType="BoardDTO">
+	<select id="selectContent" resultType="BoardDTO" parameterType="String">
 		SELECT SEQ_NO 	seqNo
 			 , RGST_ID 	rgstId
 			 , TO_CHAR(RGST_DT, 'YYYY.MM.DD') 	rgstDt

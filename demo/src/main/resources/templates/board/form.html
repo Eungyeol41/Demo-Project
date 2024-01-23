@@ -8,6 +8,15 @@
 	<meta charset="UTF-8"/>
 	<title>Insert/Update Form</title>
 </head>
+<script>
+	window.onload = function () {
+		if('[[${msg}]]'.trim() !== "") {
+            alert('[[${msg}]]');
+
+            location.href = 'list.do';
+		}
+	})
+</script>
 <body>
 	<form th:action="${procType eq 'insert' ? 'insertProc.do' : 'updateProc.do'}" th:object="${boardDTO}" method="post">
 		<table>

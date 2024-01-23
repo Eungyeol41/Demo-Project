@@ -15,4 +15,4 @@ mybatis:
   type-aliases-package: com.example.demo
 logging:
   level:
-    root: info
+    root: debug

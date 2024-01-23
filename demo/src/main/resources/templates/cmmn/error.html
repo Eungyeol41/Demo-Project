@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{fragment/layout}"
+	  layout:fragment="Content">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+<script th:inline="javascript">
+	/* <![CDATA[ */
+    $(document).ready(function () {
+        if('[[${errMsg}]]'.trim() !== "") {
+            alert('[[${errMsg}]]');
+
+            location.href = '[[${returnUrl}]]';
+        }
+    })
+    /* ]]> */
+</script>
+<body>
+</body>
+</html>

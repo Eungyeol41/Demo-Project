@@ -46,7 +46,7 @@
 		</thead>
 		<tbody>
 		<th:block th:if="${not #lists.isEmpty(boardList)}">
-			<tr th:each="result, index : ${boardList}">
+			<tr th:each="result, index : ${boardList}" th:onclick="|location.href='@{view.do(seqNo=${result.seqNo})}'|">
 				<td th:text="|${index.count}|"></td>
 				<td th:text="${result.rgstId}"></td>
 				<td th:text="${result.rgstDt}"></td>

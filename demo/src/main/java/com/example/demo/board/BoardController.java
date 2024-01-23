@@ -1,15 +1,16 @@
 package com.example.demo.board;
 
 import com.example.demo.board.service.BoardService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.codehaus.groovy.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.StringUtils;
 
+import java.util.Enumeration;
 import java.util.List;
 
 @Controller
@@ -36,28 +37,38 @@ public class BoardController {
 	}
 
 	@GetMapping(folderPath + "view.do")
-	public String view(@ModelAttribute("boardDTO") BoardDTO boardDTO, Model model) {
-		BoardDTO selectVO = boardService.selectContent(boardDTO);
+	public String view(@RequestParam String seqNo, Model model) {
+		BoardDTO selectVO = boardService.selectContent(seqNo);
 
 		model.addAttribute("selectVO", selectVO);
 
-		return "board/list";
+		return "board/view";
 	}
 
 	@GetMapping(folderPath + "{procType}Form.do")
-	public String boardForm(@ModelAttribute("boardDTO") BoardDTO boardDTO, @PathVariable String procType, Model model) {
-		// 비정상적인 접근 막기
+	public String boardForm(@RequestParam String seqNo, @PathVariable String procType, Model model) {
 
-//		BoardDTO boardDTO = new BoardDTO();
+		// 비정상적인 접근 막기
+		if("update".equals(procType) && StringUtils.isEmpty(seqNo)) {
+			model.addAttribute("msg", "비정상적인 접근입니다.");
+			model.addAttribute("returnUrl", "list.do");
+
+			return "cmmn/error";
+		}
+
+		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setProcType(procType);
 
 		// UPDATE 일 때만 DB select
 		if("update".equals(procType)) {
-			boardDTO = boardService.selectContent(boardDTO); // SEQ_NO 보내야 함.
+			boardDTO = boardService.selectContent(seqNo);
 
 			// 조회한 결과 없을 경우 '비정상적인 접근'
-			if(boardDTO != null) {
-				model.addAttribute("msg", "조회되는 데이터가 없습니다.");
+			if(boardDTO == null) {
+				model.addAttribute("errMsg", "조회되는 데이터가 없습니다.");
+				model.addAttribute("returnUrl", "list.do");
+
+				return "cmmn/error";
 			}
 		}
 
