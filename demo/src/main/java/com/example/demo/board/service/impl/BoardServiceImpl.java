@@ -1,6 +1,6 @@
 package com.example.demo.board.service.impl;
 
-import com.example.demo.board.BoardDTO;
+import com.example.demo.board.service.BoardDTO;
 import com.example.demo.board.dao.BoardDao;
 import com.example.demo.board.service.BoardService;
 import org.springframework.stereotype.Service;
@@ -35,5 +35,11 @@ public class BoardServiceImpl implements BoardService {
 	public void updateContents(BoardDTO boardDTO) {
 
 		boardDao.updateContents(boardDTO);
+	}
+
+	@Override
+	public void updateHts(String seqNo) {
+
+		boardDao.updateHts(seqNo);
 	}
 }

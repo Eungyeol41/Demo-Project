@@ -1,4 +1,4 @@
-package com.example.demo.board;
+package com.example.demo.board.service;
 
 import com.example.demo.cmmn.CmmnDTO;
 import jakarta.validation.constraints.NotEmpty;

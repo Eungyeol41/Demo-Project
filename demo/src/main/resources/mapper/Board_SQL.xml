@@ -12,6 +12,7 @@
 			 , HTS 		hts
 		FROM T_BOARD
 		WHERE USE_YN = 'Y'
+		ORDER BY RGST_DT DESC
 	</select>
 
 	<select id="selectContent" resultType="BoardDTO" parameterType="String">
@@ -47,11 +48,16 @@
 
 	<update id="updateContents" parameterType="BoardDTO">
 		UPDATE T_BOARD SET
-			  RGST_ID = #{rgstId}
-			, RVSE_ID = #{rgstId}
+			  RVSE_ID = #{rgstId}
 			, TITLE = #{title}
 			, CONT = #{cont}
 			, FILE_ID = #{fileId}
+		WHERE SEQ_NO = #{seqNo}
+	</update>
+
+	<update id="updateHts" parameterType="String">
+		UPDATE T_BOARD SET
+			HTS = HTS + 1
 		WHERE SEQ_NO = #{seqNo}
 	</update>
 

@@ -1,4 +1,4 @@
-<!--/*@thymesVar id="selectVO" type="com.example.demo.board.BoardDTO"*/-->
+<!--/*@thymesVar id="selectVO" type="com.example.demo.board.service.BoardDTO"*/-->
 <!DOCTYPE html>
 <html lang="ko"
 	  xmlns:th="http://www.thymeleaf.org"
@@ -40,7 +40,8 @@
 	</table>
 	<div id="btn_div">
 		<button type="button" th:onclick="|location.href='@{updateForm.do(seqNo=${selectVO.seqNo})}'|">수정</button>
-		<button type="button" th:onclick="|location.href='@{list.do}'|">목록</button>
+		<button type="button" class="btn_delete" th:onclick="|location.href='@{deleteForm.do(seqNo=${selectVO.seqNo})}'|">삭제</button>
+		<button type="button" class="btn_list" th:onclick="|location.href='@{list.do}'|">목록</button>
 	</div>
 </body>
 </html>

@@ -8,17 +8,18 @@
 	<meta charset="UTF-8" />
 	<title></title>
 </head>
-<script th:inline="javascript">
-	/* <![CDATA[ */
+<script>
     $(document).ready(function () {
-        if('[[${errMsg}]]'.trim() !== "") {
-            alert('[[${errMsg}]]');
+        let msg = "[[${msg}]]";
+        let returnUrl = "[[${returnUrl}]]";
 
-            location.href = '[[${returnUrl}]]';
-        }
+        if(typeof msg !== "undefined" && msg !== '') {
+            alert(msg);
+            location.href = returnUrl;
+		} else {
+            alert("비정상적인 접근입니다.");
+            location.href = '/';
+		}
     })
-    /* ]]> */
 </script>
-<body>
-</body>
 </html>

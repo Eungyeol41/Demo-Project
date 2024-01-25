@@ -2,9 +2,13 @@
 button {
     text-align: center;
     cursor: pointer;
-    border: 1px solid #0669cb;
-    background-color: #0669cb;
+    border: #438fdc;
+    background-color: #438fdc;
     color: white;
+    min-width: 85px;
+    height: 35px;
+    line-height: 32px;
+    border-radius: 5px;
 }
 
 table {
@@ -24,6 +28,14 @@ input {
 
 .mar_t10 {
     margin-top: 10px;
+}
+
+.btn_delete {
+    background-color: #f14e4e;
+}
+
+.btn_list, .btn_cancle {
+    background-color: #a1a1a1;
 }
 
 /* ID 별 CSS */

@@ -1,16 +1,15 @@
 package com.example.demo.board;
 
+import com.example.demo.board.service.BoardDTO;
 import com.example.demo.board.service.BoardService;
-import jakarta.servlet.http.HttpServletRequest;
-import org.codehaus.groovy.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
-import java.util.Enumeration;
 import java.util.List;
 
 @Controller
@@ -40,13 +39,16 @@ public class BoardController {
 	public String view(@RequestParam String seqNo, Model model) {
 		BoardDTO selectVO = boardService.selectContent(seqNo);
 
+		// 조회수 update
+		boardService.updateHts(seqNo);
+
 		model.addAttribute("selectVO", selectVO);
 
 		return "board/view";
 	}
 
 	@GetMapping(folderPath + "{procType}Form.do")
-	public String boardForm(@RequestParam String seqNo, @PathVariable String procType, Model model) {
+	public String boardForm(@ModelAttribute("seqNo") String seqNo, @PathVariable String procType, Model model) {
 
 		// 비정상적인 접근 막기
 		if("update".equals(procType) && StringUtils.isEmpty(seqNo)) {
@@ -65,7 +67,7 @@ public class BoardController {
 
 			// 조회한 결과 없을 경우 '비정상적인 접근'
 			if(boardDTO == null) {
-				model.addAttribute("errMsg", "조회되는 데이터가 없습니다.");
+				model.addAttribute("msg", "조회되는 데이터가 없습니다.");
 				model.addAttribute("returnUrl", "list.do");
 
 				return "cmmn/error";
@@ -79,15 +81,29 @@ public class BoardController {
 
 	@PostMapping(folderPath + "{procType}Proc.do")
 	public String boardProc(@ModelAttribute("boardDTO") BoardDTO boardDTO, @PathVariable String procType, Model model) {
-		LOGGER.debug("");
-		LOGGER.debug(procType + "Proc.do!");
-		LOGGER.debug("");
 		if("insert".equals(procType)) {
 			boardService.insertContents(boardDTO);
-			LOGGER.info("INSERT");
-			return "redirect:list.do";
+
+			model.addAttribute("msg", "등록되었습니다.");
+			model.addAttribute("returnUrl", "list.do");
+
+			return "cmmn/error";
 		} else if("update".equals(procType)) {
-			LOGGER.info("UPDATE");
+			LOGGER.info("");
+			LOGGER.info("\t\trgstId : " + boardDTO.getRgstId());
+			LOGGER.info("\t\ttitle : " + boardDTO.getTitle());
+			LOGGER.info("\t\tcont : " + boardDTO.getCont());
+			LOGGER.info("\t\tfileId : " + boardDTO.getFileId());
+			LOGGER.info("\t\tseqNo : " + boardDTO.getSeqNo());
+			LOGGER.info("");
+
+
+			boardService.updateContents(boardDTO);
+
+			model.addAttribute("msg", "등록되었습니다.");
+			model.addAttribute("returnUrl", "view.do?seqNo=" + boardDTO.getSeqNo());
+
+			return "cmmn/error";
 		}
 
 		return null;
